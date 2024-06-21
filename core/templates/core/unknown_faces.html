@@ -1,0 +1,45 @@
+<!-- templates/your_app/unknown_faces_list.html -->
+
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2>Unknown Faces Log</h2>
+
+    {% if unknown_faces %}
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Unknown</th>
+            <th scope="col">Image</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col">Delete Log</th>
+            <th scope="col">Select</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for face in unknown_faces %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>
+                <img src="{% static 'unknown_faces/' %}{{ face.image }}" alt="Unknown Face Image" class="img-thumbnail">
+              </td>
+              <td>{{ face.timestamp }}</td>
+              <td>
+                <a href="{% url 'delete_unknown_face' face.id %}" class="btn btn-danger btn-sm">Delete Log</a>
+              </td>
+              <td>
+                <a href="{% url 'add_profile' %}" class="btn btn-primary btn-sm">Select</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="mt-3">No unknown faces logged.</p>
+    {% endif %}
+
+    <p class="mt-3"><a href="{% url 'clear_unknown_faces' %}" class="btn btn-warning">Clear All Logs</a></p>
+  </div>
+{% endblock %}
