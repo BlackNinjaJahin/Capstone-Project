@@ -33,6 +33,6 @@ pytz==2020.4,
 sqlparse==0.4.1   are properly installed.
 
 
-The id and password for admin login is (id=arun) and (password=arun), however you can change it by running the command ( python manage.py createsuperuser  )
+
 
 
